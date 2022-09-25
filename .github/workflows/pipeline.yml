@@ -1,0 +1,27 @@
+name: Pipeline
+
+on:
+  schedule:
+    - cron:  '1 0 * * *'
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: master
+      - name: Python
+        run: python3 script.py
+      - name: Push
+        run: |
+          git config user.email ${{ secrets.USER_EMAIL }}
+          git config user.name ${{ secrets.USER_NAME }}
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || (git commit --amend --no-edit; git push -u origin HEAD:master -f)
+        # set USER_EMAIL and USER_NAME as repo secrets, GITHUB_TOKEN and GITHUB_REPOSITORY are built-in env variables when using Github Actions
