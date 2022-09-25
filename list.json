@@ -1,0 +1,17 @@
+[
+    "algorand/go-algorand",
+    "ava-labs/avalanchego",
+    "bitcoin/bitcoin",
+    "bnb-chain/bsc",
+    "Chia-Network/chia-blockchain",
+    "dogecoin/dogecoin",
+    "ethereum/go-ethereum",
+    "litecoin-project/litecoin",
+    "monero-project/monero",
+    "paritytech/polkadot",
+    "paritytech/substrate",
+    "ripple/ripple-client",
+    "solana-labs/solana",
+    "stellar/stellar-core",
+    "tronprotocol/java-tron"
+]
